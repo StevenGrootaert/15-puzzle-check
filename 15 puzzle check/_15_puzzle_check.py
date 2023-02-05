@@ -1,15 +1,9 @@
-# the natural or home condition of the puzzle and the parity of a 4x4 field
-home=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-parity_array=["E","O","E","O","O","E","O","E","E","O","E","O","O","E","O","E"]
-
-# TEST CASES
+# TEST CASES (comment out the get_inputs function)
 #incoming=[1,5,9,13,2,6,10,14,3,7,11,15,4,8,12,16]
 #incoming=[7,8,9,10,6,1,2,11,5,4,3,12,16,15,14,13]
 #incoming=[1,8,9,16,2,7,10,15,3,6,11,14,4,5,12,13]
 #incoming=[15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,16]
-
-print("The tile values need to be entered from left to right, top to bottom\nEnter the blank space as 16\n")
-print("Only enter values 1 through 16")
+#incoming=[1,2,3,4,9,8,7,6,5,10,11,12,13,16,15,14]
 
 def get_inputs():
     while True:
@@ -80,6 +74,7 @@ def find_incoming_transpositions(incoming):
     #make a deep copy of incoming array to not alter orginal
     transposed=incoming.copy()
     transposition_count = 0
+    # it prints the first line as the incoming and if there's another transposition will print the current state of the transposed list
     for i in range(len(transposed)):
         if transposed[i] != home[i]:
         # see the steps of each transposition line by line
@@ -90,6 +85,10 @@ def find_incoming_transpositions(incoming):
             transposed[i], transposed[transpose] = transposed[transpose], transposed[i]
         # add to transposition count
             transposition_count += 1
+    if transposed != home:
+        raise Exception("transposition unsuccessful")
+    # prints the final completed transposed incoming input
+    print(transposed)
     return transposition_count
 
 def solvable(solution_parity, solution_transpositions):
@@ -100,10 +99,22 @@ def solvable(solution_parity, solution_transpositions):
     else:
         print("the puzzle is NOT solvable\n")
 
+# the natural or home condition of the puzzle and the parity of a 4x4 home field
+home=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+parity_array=["E","O","E","O","O","E","O","E","E","O","E","O","O","E","O","E"]
+
+print(" . . . . . 15 puzzle validity check . . . . .\nChecks if a user defined 15 puzzle is solvable\n")
+print("Enter the tile values starting from the TOP row moving LEFT to RIGHT.\nThen do the same for the next row below till you reach the BOTTOM row\n")
+print("Enter the blank space as '16'")
+print("Only enter values 1 through 16")
+
 incoming = get_inputs()
+# copy TEST CASES for 'incoming'
 print_puzzle(incoming)
+
 solution_transpositions = find_incoming_transpositions(incoming)
 solution_parity = find_incoming_parity(incoming)
+
 print(f"\nthe number of transpositions is: {solution_transpositions}")
 print(f"the parity of the solution is: {solution_parity}")
 solvable(solution_parity, solution_transpositions)
