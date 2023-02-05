@@ -52,6 +52,17 @@ def find_duplications(input_list, input_set):
     print("try again")
     get_inputs()
 
+def print_puzzle(incoming):
+    print("\n---------------------")
+    print(f"| {incoming[0]:^2} | {incoming[1]:^2} | {incoming[2]:^2} | {incoming[3]:^2} |")
+    print("---------------------")
+    print(f"| {incoming[4]:^2} | {incoming[5]:^2} | {incoming[6]:^2} | {incoming[7]:^2} |")
+    print("---------------------")
+    print(f"| {incoming[8]:^2} | {incoming[9]:^2} | {incoming[10]:^2} | {incoming[11]:^2} |")
+    print("---------------------")
+    print(f"| {incoming[12]:^2} | {incoming[13]:^2} | {incoming[14]:^2} | {incoming[15]:^2} |")
+    print("---------------------\n")
+
 def find_incoming_parity(incoming):
     blank_space = incoming.index(16)
     parity = parity_array[blank_space]
@@ -90,17 +101,9 @@ def solvable(solution_parity, solution_transpositions):
         print("the puzzle is NOT solvable\n")
 
 incoming = get_inputs()
-print("\n---------------------")
-print(f"| {incoming[0]:^2} | {incoming[1]:^2} | {incoming[2]:^2} | {incoming[3]:^2} |")
-print("---------------------")
-print(f"| {incoming[4]:^2} | {incoming[5]:^2} | {incoming[6]:^2} | {incoming[7]:^2} |")
-print("---------------------")
-print(f"| {incoming[8]:^2} | {incoming[9]:^2} | {incoming[10]:^2} | {incoming[11]:^2} |")
-print("---------------------")
-print(f"| {incoming[12]:^2} | {incoming[13]:^2} | {incoming[14]:^2} | {incoming[15]:^2} |")
-print("---------------------\n")
+print_puzzle(incoming)
 solution_transpositions = find_incoming_transpositions(incoming)
 solution_parity = find_incoming_parity(incoming)
 print(f"\nthe number of transpositions is: {solution_transpositions}")
 print(f"the parity of the solution is: {solution_parity}")
-is_it_solvable = solvable(solution_parity, solution_transpositions)
+solvable(solution_parity, solution_transpositions)
