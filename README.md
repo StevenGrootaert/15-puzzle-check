@@ -6,7 +6,7 @@ I created this because in all the years I've been playing around with the Fiftee
 All you’ll need to do is input a list of numbers that represent the desired configuration you’re trying to solve for. I have taken some care to make sure the input will be validated before proceeding but, as they say, s#it happens. 
 
 It’s probably best to draw a little diagram like this to keep track of which numbers you’ll need to input. Read/input each row starting from the top and moving from left to right; repeat for the next row below. The ‘blank space’ is entered as ‘16’. Put a space between each number and after typing the last number hit enter. 
-
+```
 - - - - - - - - - - - -  
 |  1  |  5  | 9  | 13 |
 - - - - - - - - - - - - 
@@ -16,7 +16,7 @@ It’s probably best to draw a little diagram like this to keep track of which n
 - - - - - - - - - - - - 
 |  4  |  8  | 12 |    | 
 - - - - - - - - - - - - 
-
+```
 For example this above diagram would be written as:
 1 5 9 13 2 6 10 14 3 7 11 15 4 8 12 16
 
@@ -26,6 +26,7 @@ Thank you for taking a look.
 
 Long version: 
 The Fifteen Puzzle sits on my desk under my monitor, it has for years and still does. . . I pick it up and casually shuffle the tiles around until the solution presents itself. I find it calming and meditative. I’ve done various ‘solves’ for the puzzle; odds on top and evens on bottom, spirals, snakes etc. One fine day about a year ago I imagined this pattern: 
+```
 - - - - - - - - - - - - 
 |  1  |  8  |  9 |    |
 - - - - - - - - - - - - 
@@ -35,7 +36,7 @@ The Fifteen Puzzle sits on my desk under my monitor, it has for years and still 
 - - - - - - - - - - - - 
 |  4  |  5  | 12 | 13 | 
 - - - - - - - - - - - - 
-
+```
 It seemed simple enough. . . I work at it for about 15 min and I can’t get the last 2 tiles (the 14 and the 15 or the 13 and the 14) to be in the right spot. OKAY I thought. Time to focus and get this done. About an HOUR goes by and I can’t get it. “Hmmm have I lost my touch?” I thought. So I did a standard solve and a few others without a problem. I try again - and the same result - I can’t get the ‘solve’ I was looking for. 
 
 TO THE INTERNET ! 
