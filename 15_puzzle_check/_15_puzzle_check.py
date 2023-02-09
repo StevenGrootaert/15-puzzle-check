@@ -1,9 +1,3 @@
-# TEST CASES (comment out the get_inputs function)
-#incoming=[1,5,9,13,2,6,10,14,3,7,11,15,4,8,12,16]
-#incoming=[7,8,9,10,6,1,2,11,5,4,3,12,16,15,14,13]
-#incoming=[1,8,9,16,2,7,10,15,3,6,11,14,4,5,12,13]
-#incoming=[15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,16]
-#incoming=[1,2,3,4,9,8,7,6,5,10,11,12,13,16,15,14]
 
 def get_inputs():
     while True:
@@ -16,19 +10,36 @@ def get_inputs():
         except ValueError:
             print("\nplease only numerical numbers")
             continue
-        if len(input_list) < 15:
+        if len(input_list) < 16:
             print("\nnot enough tiles entered")
             if len(input_set) != len(input_list):
                 find_duplications(input_list, input_set)
+            if puzzle_range == False:
+                print("\ninput outside of puzzle range (1-16)")
+            print("try again")
+            continue
         if len(input_list) > 16:
             print("\ntoo many tiles entered")
             if len(input_set) != len(input_list):
                 find_duplications(input_list, input_set)
-        if len(input_list) == 15:
-            if len(input_set) != len(input_list):
-                find_duplications(input_list, input_set)
-        elif puzzle_range == False:
-            print("\ntile entered outside of puzzle range (1-16)")
+            if puzzle_range == False:
+                print("\ninput outside of puzzle range (1-16)")
+            print("try again")
+            continue
+            ## you can have both a list that's the right length that has BOTH numbers out of range AND duplicates. there has to ba a better way 
+        if (len(input_list) == 16) and (len(input_set) != len(input_list)) and (puzzle_range == False):
+            print("\ninput outside of puzzle range (1-16)")
+            find_duplications(input_list, input_set)
+            print("try again")
+            continue
+        if (len(input_list) == 16) and (len(input_set) != len(input_list)):
+            find_duplications(input_list, input_set)
+            print("try again")
+            continue
+        if (len(input_list) == 16) and (puzzle_range == False):
+            print("\ninput outside of puzzle range (1-16)")
+            print("try again")
+            continue
         else:
             return input_list
         break
@@ -43,8 +54,7 @@ def find_duplications(input_list, input_set):
             unique = unique - set([num])
     dups = (input_set - unique)
     print(dups)
-    print("try again")
-    get_inputs()
+    return True
 
 def print_puzzle(incoming):
     print("\n---------------------")
@@ -60,11 +70,8 @@ def print_puzzle(incoming):
 def find_incoming_parity(incoming):
     blank_space = incoming.index(16)
     parity = parity_array[blank_space]
-    incoming_parity = 'unknown'
-    if parity == 'E':
-        incoming_parity = 'EVEN'
-        return incoming_parity
-    elif parity == 'O':
+    incoming_parity = 'EVEN'
+    if parity == 'O':
         incoming_parity = 'ODD'
         return incoming_parity
     else:
