@@ -11,17 +11,20 @@ def assert_valid_input(input_list,input_set):
         raise Exception("too many tiles entered")
     elif len(input_set) != len(input_list):
         dups = find_duplications(input_list,input_set)
-        raise Exception("There are duplicates:" + str(dups))
+        raise Exception("duplicate tiles entered:" + str(dups))
     elif (puzzle_range == False):
         raise Exception("input outside of puzzle range (1-16)")
 
-def get_inputs(): #would be nice to add an exit/escape program ?
+def get_inputs():
     while True:
         try:
             tiles = (input("\nType the tile values seperated by a space: \n").split(' '))
             input_list = [int(tile) for tile in tiles]
             input_set = set(input_list)
             assert_valid_input(input_list,input_set)
+        except ValueError as v:
+            print("\nonly numbers please: " + str(v.args))
+            continue
         except Exception as e:
             print("\nbad input: " + str(e)) 
             continue
@@ -30,16 +33,14 @@ def get_inputs(): #would be nice to add an exit/escape program ?
         break
 
 def find_duplications(input_list, input_set):
-    # print("\nduplicate tiles entered:")
     unique = set()
     for num in input_list:
         if num not in unique:
             unique.add(num)
         else:
             unique = unique - set([num])
-    dups = (input_set - unique)
-    
-    return dups
+    duplications = (input_set - unique)
+    return duplications
 
 def print_puzzle(incoming):
     print("\n---------------------")
@@ -63,33 +64,32 @@ def find_incoming_parity(incoming):
         return incoming_parity
 
 def find_incoming_transpositions(incoming):
-    #make a deep copy of incoming array to not alter orginal
     transposed=incoming.copy()
     transposition_count = 0
-    # it prints the first line as the incoming and if there's another transposition will print the current state of the transposed list
     for i in range(len(transposed)):
         if transposed[i] != HOME[i]:
-        # see the steps of each transposition line by line
-            print(transposed)
-        # find index value of next tile needed
+            #print(transposed)
             transpose = transposed.index(HOME[i])
-        # swaping index values
             transposed[i], transposed[transpose] = transposed[transpose], transposed[i]
-        # add to transposition count
             transposition_count += 1
     if transposed != HOME:
         raise Exception("transposition unsuccessful")
-    # prints the final completed transposed incoming input
-    print(transposed)
+    #print(transposed)
     return transposition_count
 
-def solvable(solution_parity, solution_transpositions):
+def print_transpositions(incoming):
+    transposed=incoming.copy()
+    for i in range(len(transposed)):
+        if transposed[i] != HOME[i]:
+            print(transposed)
+            transpose = transposed.index(HOME[i])
+            transposed[i], transposed[transpose] = transposed[transpose], transposed[i]
+    print(transposed)
+
+def check_solvable(solution_parity, solution_transpositions):
     if (((solution_transpositions)%2) == 0) & (solution_parity == 'EVEN'):
-        print("the puzzle is solvable\n")
         return True
     elif (((solution_transpositions)%2) == 1) & (solution_parity == 'ODD'):
-        print("the puzzle is solvable\n")
         return True
     else:
-        print("the puzzle is NOT solvable\n")
         return False

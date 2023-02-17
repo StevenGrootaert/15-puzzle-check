@@ -12,6 +12,12 @@ fifteen.print_puzzle(incoming)
 solution_transpositions = fifteen.find_incoming_transpositions(incoming)
 solution_parity = fifteen.find_incoming_parity(incoming)
 
+fifteen.print_transpositions(incoming)
 print(f"\nthe number of transpositions is: {solution_transpositions}")
 print(f"the parity of the solution is: {solution_parity}")
-fifteen.solvable(solution_parity, solution_transpositions)
+
+result = fifteen.check_solvable(solution_parity, solution_transpositions)
+if result == True:
+    print("the puzzle is solvable\n")
+else:
+    print("the puzzle in NOT solvable\n")
