@@ -68,13 +68,11 @@ def find_incoming_transpositions(incoming):
     transposition_count = 0
     for i in range(len(transposed)):
         if transposed[i] != HOME[i]:
-            #print(transposed)
             transpose = transposed.index(HOME[i])
             transposed[i], transposed[transpose] = transposed[transpose], transposed[i]
             transposition_count += 1
     if transposed != HOME:
         raise Exception("transposition unsuccessful")
-    #print(transposed)
     return transposition_count
 
 def print_transpositions(incoming):
