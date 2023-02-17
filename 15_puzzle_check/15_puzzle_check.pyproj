@@ -5,7 +5,7 @@
     <ProjectGuid>367009bd-9d15-45b6-945e-0fde782bf47e</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>_15_puzzle_check.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,10 +25,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="15_puzzle_check_tests.py">
+    <Compile Include="fifteen_tests.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_15_puzzle_check.py" />
+    <Compile Include="fifteen.py" />
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
